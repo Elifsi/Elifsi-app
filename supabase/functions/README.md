@@ -1,43 +1,66 @@
-# supabase/functions/ — Supabase Edge Functions
+# supabase/functions/ — Supabase Edge Functions Developer Guide
 
-This directory contains server-side TypeScript Edge Functions running on the Deno runtime for privileged operations and external service integrations.
+This directory is designated for server-side TypeScript Edge Functions running on the Deno runtime for privileged operations, payment integrations, and partner payout disbursements.
 
 ## Status
 
-🔮 **No Edge Functions yet — will be implemented as production integrations commence.**
+🔮 **Awaiting Open-Source Contributor / Developer Implementation.**
+No production code files or functions have been implemented here yet. This document provides the architectural guidelines and requirements for developers implementing Edge Functions.
 
 ---
 
-## Planned Edge Functions
+## 1. Payment Service Functions Specification
 
-1. **`payment-initiate/`**:
-   - Implements the Payment Service abstraction dispatching to provider adapters (`eSewa`, `Khalti`, `Fonepay`, and optional dedicated `Card Gateway`).
-   - Handles card payments through provider checkout where facilitated (e.g. Khalti Checkout) without unnecessary duplication, while remaining extensible for dedicated card processors.
-   - Calculates immutable order totals server-side (never trusts client-provided amounts).
-   - Generates and signs gateway session tokens, QR payloads, or redirect URLs with nonces.
+### Function 1: `payment-initiate/`
+* **Purpose**: Creates an authenticated payment session with a selected payment provider.
+* **Developer Instructions**:
+  * Implement the Payment Service abstraction dispatching to provider adapters:
+    * `esewa`: Generates ePay v2 signature (`total_amount`, `transaction_uuid`, `product_code`) using HMAC-SHA256.
+    * `khalti`: Calls Khalti ePayment v2 `/epayment/initiate/` endpoint with public key. Facilitates card, bank, and wallet payments directly in Khalti Checkout.
+    * `fonepay`: Generates dynamic merchant QR payload and interbank payment string.
+    * `card`: Dispatches to dedicated card gateway adapter if one is configured, or routes through provider checkout.
+  * **Critical Requirement**: Compute order total server-side from `public.order_items`. Never trust client-sent amounts.
+  * Inserts a record into `public.payments` with `status = 'pending'`.
+  * Returns redirect URL, QR data, or session token to client application.
 
-2. **`payment-verify/`**:
-   - Webhook and callback receiver for payment gateway notifications.
-   - Cryptographically verifies gateway signatures and IP addresses.
-   - Updates `payments` table status and triggers order status advancement.
+### Function 2: `payment-verify/`
+* **Purpose**: Webhook listener and callback receiver for payment gateway completion.
+* **Developer Instructions**:
+  * Verify incoming request authenticity using provider-specific cryptographic signatures:
+    * Validate eSewa HMAC signature using merchant secret key.
+    * Call Khalti `/epayment/lookup/` endpoint to confirm settlement status.
+    * Verify Fonepay server-to-server callback hash and IP whitelisting.
+  * Enforce **idempotency**: If `payments.status` is already `'completed'`, return HTTP 200 without duplicate processing.
+  * Transition `payments.status = 'completed'`.
+  * Advance `orders.status` to `'confirmed'`.
+  * Insert double-entry ledger record into `public.transactions`.
 
-3. **`payout-execute/`**:
-   - Executes partner payout batches to banks / partner wallets.
-   - Restricted to automated settlement schedules or platform admin authorization.
-   - Records provider reference numbers and reconciliation tokens.
+---
 
-4. **`ai-concierge-chat/`**:
-   - Server-side tool execution loop for conversational catalog querying and order drafting.
-   - Protects upstream AI provider API keys (Gemini, Anthropic, OpenRouter).
+## 2. Partner Payout Subsystem Specification
 
-5. **`push-notify/`**:
-   - Sends critical order notifications to mobile clients via FCM (Android) and APNs (iOS).
+### Function 3: `payout-execute/`
+* **Purpose**: Executes automated or admin-approved partner payout batches.
+* **Developer Instructions**:
+  * Query unsettled `public.partner_earnings` grouped by `partner_id`.
+  * Compute net payout: `SUM(gross_amount) - SUM(platform_fee) - SUM(tax_withheld) - adjustments`.
+  * Dispatches disbursement via banking rail / IPS adapter (e.g. NCHL-IPS / ConnectIPS / Bank API).
+  * Records bank transaction reference number in `public.payouts`.
+  * Mark corresponding earnings as `is_settled = TRUE`.
+  * Security: Restrict invocation strictly to cron service role or platform admin JWT claims.
+
+---
+
+## 3. Other Planned Edge Functions
+
+* **`ai-concierge-chat/`**: Server-side tool execution loop for catalog queries and order drafting (protects Gemini / Claude / OpenRouter API keys).
+* **`push-notify/`**: High-priority push notifications to Android (FCM) and iOS (APNs) clients for new incoming orders and driver updates.
 
 ---
 
 ## Edge Function Security Rules
 
-- **Secrets Management**: Secrets are injected via `supabase secrets set <KEY>=<VALUE>`. They are NEVER checked into Git.
-- **Service Role Key Usage**: The `SUPABASE_SERVICE_ROLE_KEY` is only used within Edge Functions when cross-table or administrative operations are required.
-- **Payload Validation**: All incoming requests are validated against strict Zod or JSON schemas before processing.
-- **Idempotency**: Payment and payout webhooks must implement idempotency keys to prevent double-charging or double-disbursement.
+1. **Zero Client Secrets**: All gateway merchant credentials, secret keys, and webhook signing tokens must be stored in Supabase secrets via `supabase secrets set <KEY>=<VALUE>`.
+2. **Never Commit Private Keys**: No `.env` files with secret values should ever be committed to Git.
+3. **Strict Validation**: Validate all incoming HTTP payloads against Zod schemas.
+4. **Zero Raw Card Storage**: Never handle or log raw credit card numbers (PAN) or CVVs.
