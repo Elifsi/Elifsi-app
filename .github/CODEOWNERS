@@ -1,0 +1,25 @@
+# CODEOWNERS
+#
+# Default reviewers for pull requests across the Elifsi repository.
+# Format: <pattern> <owner> [<owner> ...]
+
+# Default owner for everything in the repository
+* @Elifsi
+
+# Prototype (existing Next.js reference implementation)
+prototype/ @Elifsi
+
+# Production Applications
+apps/consumer/ @Elifsi
+apps/partner/ @Elifsi
+apps/web/ @Elifsi
+
+# Shared Backend
+supabase/ @Elifsi
+
+# Documentation
+docs/ @Elifsi
+
+# CI & Tooling
+.github/ @Elifsi
+scripts/ @Elifsi

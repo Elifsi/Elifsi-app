@@ -1,0 +1,14 @@
+-- supabase/seed.sql
+--
+-- Seed data for local development.
+-- Applied automatically when running `supabase db reset`.
+--
+-- This file should contain ONLY development/testing seed data.
+-- Never put production data, real user data, or credentials here.
+--
+-- Examples of appropriate seed data:
+--   - Test user profiles
+--   - Sample product catalog entries
+--   - Sample categories
+--
+-- Add seed data here as the schema is defined in supabase/migrations/.
