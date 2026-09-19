@@ -1,4 +1,4 @@
-# Elifsi App (Pocket Concierge) — Platform Monorepo
+# Elifsi App — Platform Monorepo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-green.svg)](./docs/roadmap/README.md)
