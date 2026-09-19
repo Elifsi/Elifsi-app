@@ -16,7 +16,7 @@ This document describes the comprehensive system architecture of the Pocket Conc
 │  CONSUMER APPS   │       │   PARTNER APPS   │       │ PROTOTYPE (REF)  │
 │ Android (Kotlin) │       │ Android (Kotlin) │       │  Next.js + React │
 │ iOS (Swift)      │       │ iOS (Swift)      │       │  Tailwind + TS   │
-│ Web (Next.js)    │       │ Web (Next.js)    │       │ (prototype/web/) │
+│ Web (Next.js)    │       │ Web (Next.js)    │       │ (prototype/Phone/) │
 └─────────┬────────┘       └─────────┬────────┘       └──────────────────┘
           │                          │                  (Browser-only UX
           │                          │                  & Flow Reference)
@@ -49,7 +49,7 @@ This document describes the comprehensive system architecture of the Pocket Conc
 
 ## 2. Core Application Segments
 
-### A. Prototype — `prototype/web/`
+### A. Prototype — `prototype/Phone/`
 - **Status**: Current, working interactive reference.
 - **Technology**: Next.js 16 (App Router), React 18, TypeScript, Tailwind CSS, Zustand, Vitest, Playwright.
 - **Purpose**: Implements the multi-vertical mock catalog, conversational voice AI concierge, E2EE chat, WebRTC calling, and order simulations. Serves as the interactive blueprint for all production client applications.
@@ -179,7 +179,7 @@ The platform defines distinct user roles enforced via Supabase Auth and PostgreS
 
 ## 7. Prototype Internal Architecture Notes (Reference)
 
-For developers referencing the existing prototype at `prototype/web/`:
+For developers referencing the existing prototype at `prototype/Phone/`:
 - **Zustand Slices**: `useAppStore` and `useChatStore` use slice composability to prevent monolith store files while maintaining unified cross-domain state.
 - **Barrel Exports**: `lib/types`, `lib/data/catalog`, `lib/store/useAppStore`, `lib/store/useChatStore` export through `index.ts`.
 - **Testing**:

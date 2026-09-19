@@ -22,13 +22,13 @@ Elifsi-app/
 
 ## 2. Working on the Prototype
 
-The interactive reference prototype is located at `prototype/web/`.
+The interactive reference prototype is located at `prototype/Phone/`.
 
 ### Local Setup
 ```bash
 # Clone the repository
 git clone https://github.com/Elifsi/Elifsi-app.git
-cd Elifsi-app/prototype/web
+cd Elifsi-app/prototype/Phone
 
 # Install dependencies
 npm install
@@ -43,10 +43,10 @@ npm run dev:all
 Open [http://localhost:3000](http://localhost:3000).
 
 ### Pre-PR Quality Checklist (Prototype)
-Before opening a pull request that touches `prototype/web/`, run the full validation suite:
+Before opening a pull request that touches `prototype/Phone/`, run the full validation suite:
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 
 # 1. Lint
 npm run lint

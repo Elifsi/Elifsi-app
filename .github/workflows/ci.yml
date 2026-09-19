@@ -4,17 +4,17 @@ on:
   push:
     branches: [main]
     paths:
-      - "prototype/web/**"
+      - "prototype/Phone/**"
       - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
     paths:
-      - "prototype/web/**"
+      - "prototype/Phone/**"
       - ".github/workflows/ci.yml"
 
 defaults:
   run:
-    working-directory: prototype/web
+    working-directory: prototype/Phone
 
 jobs:
   prototype:
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
-          cache-dependency-path: prototype/web/package-lock.json
+          cache-dependency-path: prototype/Phone/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -57,5 +57,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: prototype/web/playwright-report/
+          path: prototype/Phone/playwright-report/
           retention-days: 7

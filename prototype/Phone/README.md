@@ -12,7 +12,7 @@
 
 | Directory | Purpose | Status |
 |---|---|---|
-| `prototype/web/` | Visual, functional, and UX reference for the entire platform | ✅ **Current & Working** |
+| `prototype/Phone/` | Visual, functional, and UX reference for the entire platform | ✅ **Current & Working** |
 | `apps/consumer/` | Native Android and iOS consumer applications | 🔮 Planned |
 | `apps/partner/` | Native Android and iOS partner/merchant applications | 🔮 Planned |
 | `apps/web/` | Production consumer and partner web portals | 🔮 Planned |
@@ -58,7 +58,7 @@
 ## Running the Prototype Locally
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm install
 npm run dev
 ```
@@ -67,10 +67,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Running with Real AI Models
 
-Copy `.env.example` to `.env.local` inside `prototype/web/`:
+Copy `.env.example` to `.env.local` inside `prototype/Phone/`:
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 cp .env.example .env.local
 ```
 
@@ -84,7 +84,7 @@ Set at least one API key:
 To test encrypted messaging and calls between two browser sessions:
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm run dev:all
 ```
 
@@ -95,7 +95,7 @@ This starts both the Next.js frontend (port 3000) and the WebSocket relay (port 
 ## Testing
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm run lint         # ESLint check
 npx tsc --noEmit     # TypeScript typecheck
 npm run test         # Vitest unit + integration tests (75 tests)

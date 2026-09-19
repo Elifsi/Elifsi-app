@@ -23,6 +23,6 @@
 
 ## Reference
 
-Use [`prototype/web/`](../../../prototype/web/) as the visual, interaction, and component reference when building this application.
+Use [`prototype/Phone/`](../../../prototype/Phone/) as the visual, interaction, and component reference when building this application.
 
 > **Security Reminder**: Never expose `SUPABASE_SERVICE_ROLE_KEY` in client bundles. Use only `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.

@@ -14,7 +14,7 @@ Closes #
 
 ## Component(s) affected
 
-- [ ] `prototype/web/` — Web prototype & reference implementation
+- [ ] `prototype/Phone/` — Web prototype & reference implementation
 - [ ] `apps/consumer/` — Consumer applications (Android / iOS)
 - [ ] `apps/partner/` — Partner applications (Android / iOS)
 - [ ] `apps/web/` — Production web applications (Consumer / Partner)
@@ -24,12 +24,12 @@ Closes #
 
 ## Pre-PR checklist
 
-### Prototype (`prototype/web/`)
+### Prototype (`prototype/Phone/`)
 
-If you modified code in `prototype/web/`, run:
+If you modified code in `prototype/Phone/`, run:
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm run lint
 npx tsc --noEmit
 npm run test

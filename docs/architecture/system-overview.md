@@ -69,6 +69,6 @@ Pocket Concierge is an AI-first super-app platform connecting consumers and serv
 - **Independent Payout Subsystem**: Partner payouts are decoupled from consumer checkout transactions through an auditable settlement lifecycle.
 
 ### D. Prototype vs. Production Delineation
-- [`prototype/web/`](../../prototype/web/) is the working Next.js interactive prototype and visual/functional reference.
+- [`prototype/Phone/`](../../prototype/Phone/) is the working Next.js interactive prototype and visual/functional reference.
 - [`apps/`](../../apps/) contains the production clients (Consumer Android/iOS/Web and Partner Android/iOS/Web).
 - The prototype is kept separate and fully functional so team members can experience the end-to-end design without requiring production infrastructure.

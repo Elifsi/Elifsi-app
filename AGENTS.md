@@ -12,12 +12,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 >
 > | Path | Purpose | Status |
 > |------|---------|--------|
-> | `prototype/web/` | Working Next.js prototype (visual & functional reference) | ✅ Current |
+> | `prototype/Phone/` | Working Next.js prototype (visual & functional reference) | ✅ Current |
 > | `apps/consumer/` | Native Android & iOS consumer applications | 🔮 Planned |
 > | `apps/partner/` | Native Android & iOS partner applications | 🔮 Planned |
 > | `apps/web/` | Production consumer & partner web applications | 🔮 Planned |
 > | `supabase/` | Centralized shared backend (DB, Auth, RLS, Edge Functions) | 🔮 Planned |
 >
 > **Running the Prototype**:
-> Run `next dev` (and all npm commands) from `prototype/web/`, not the repository root.
-> The `node_modules/next/` package is installed at `prototype/web/node_modules/next/`.
+> Run `next dev` (and all npm commands) from `prototype/Phone/`, not the repository root.
+> The `node_modules/next/` package is installed at `prototype/Phone/node_modules/next/`.

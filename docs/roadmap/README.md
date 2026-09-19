@@ -5,7 +5,7 @@ This document outlines the phased development roadmap for Pocket Concierge.
 ---
 
 ## Phase 0: Prototype & UX Validation (Current)
-- [x] End-to-end interactive Next.js web prototype (`prototype/web/`)
+- [x] End-to-end interactive Next.js web prototype (`prototype/Phone/`)
 - [x] Multi-category mock catalog (food, grocery, retail, hotels, rides, services)
 - [x] Voice-first AI concierge loop with tool use & model fallback
 - [x] End-to-end encrypted direct messaging and WebRTC voice/video calling

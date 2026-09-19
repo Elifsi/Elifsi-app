@@ -67,7 +67,7 @@ All reports will be acknowledged promptly and reviewed with high priority.
 
 ## 5. Scope: Prototype vs. Production
 
-### In Scope for Prototype (`prototype/web/`)
+### In Scope for Prototype (`prototype/Phone/`)
 - Web Cryptography API end-to-end encryption implementation (`lib/chat/crypto.ts`).
 - WebSocket chat relay connection authentication challenge (`server/chat-relay.mjs`).
 - WebRTC media signaling and session handling.

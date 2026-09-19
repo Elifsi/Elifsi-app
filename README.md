@@ -12,7 +12,7 @@ An open-source, AI-first super-app platform connecting consumers and local busin
 >
 > | What you are looking for | Directory | Status | Description |
 > |---|---|---|---|
-> | **Working Reference Prototype** | [`prototype/web/`](./prototype/web/) | ✅ **Current & Runnable** | Complete working Next.js 16 prototype with catalog, voice AI concierge, encrypted chat, WebRTC, and ride/order simulations. |
+> | **Working Reference Prototype** | [`prototype/Phone/`](./prototype/Phone/) | ✅ **Current & Runnable** | Complete working Next.js 16 prototype with catalog, voice AI concierge, encrypted chat, WebRTC, and ride/order simulations. |
 > | **Consumer Mobile Apps** | [`apps/consumer/`](./apps/consumer/) | 🔮 Planned | Production native apps: [Android (Kotlin/Compose)](./apps/consumer/android/) and [iOS (Swift/SwiftUI)](./apps/consumer/ios/). |
 > | **Partner / Merchant Apps** | [`apps/partner/`](./apps/partner/) | 🔮 Planned | Production business apps: [Android (KDS/POS)](./apps/partner/android/) and [iOS (Merchant)](./apps/partner/ios/). |
 > | **Production Web Portals** | [`apps/web/`](./apps/web/) | 🔮 Planned | Production web clients: [Consumer Web](./apps/web/consumer/) and [Partner Dashboard](./apps/web/partner/). |
@@ -59,7 +59,7 @@ The platform unifies multiple native and web clients around a single, centralize
 Elifsi-app/
 │
 ├── prototype/
-│   └── web/                   ← 🟢 START HERE: Working Next.js reference prototype
+│   └── Phone/                 ← 🟢 START HERE: Working Next.js reference prototype
 │       ├── app/               # 41 App Router routes (Home, Explore, Chat, Snap, Rides)
 │       ├── components/        # Reusable UI & feature components
 │       ├── lib/               # Zustand stores, mock catalog, AI logic, E2EE crypto
@@ -118,11 +118,11 @@ Elifsi-app/
 
 ## How to Run the Working Prototype Today
 
-The reference prototype at `prototype/web/` is completely functional:
+The reference prototype at `prototype/Phone/` is completely functional:
 
 ```bash
 # 1. Navigate to the prototype directory
-cd prototype/web
+cd prototype/Phone
 
 # 2. Install dependencies
 npm install
@@ -142,7 +142,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Running Quality Checks on the Prototype
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm run lint         # ESLint check (0 errors)
 npx tsc --noEmit     # TypeScript typecheck (0 errors)
 npm run test         # Vitest unit & integration tests (75/75 passing)
@@ -155,7 +155,7 @@ npm run build        # Production Next.js Turbopack build (41 routes compiled)
 
 | If you are working on... | Put your code in... | Guidelines |
 |---|---|---|
-| **Adding a UI idea or exploring UX** | `prototype/web/` | Fast-paced browser prototype. Local state, no production DB required. |
+| **Adding a UI idea or exploring UX** | `prototype/Phone/` | Fast-paced browser prototype. Local state, no production DB required. |
 | **Building the Consumer Android App** | `apps/consumer/android/` | Kotlin + Jetpack Compose. Clean Architecture. Connect to Supabase. |
 | **Building the Consumer iOS App** | `apps/consumer/ios/` | Swift + SwiftUI. Connect to Supabase. |
 | **Building the Consumer Web Portal** | `apps/web/consumer/` | Production Next.js. Connect to Supabase Auth & PostgreSQL. |

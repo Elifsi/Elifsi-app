@@ -16,10 +16,10 @@ This guide covers local environment setup, standards, and workflows for contribu
 
 ## 2. Working with the Prototype
 
-The interactive prototype lives in `prototype/web/`. All prototype commands must run inside that directory:
+The interactive prototype lives in `prototype/Phone/`. All prototype commands must run inside that directory:
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm install
 npm run dev           # Run Next.js on port 3000
 npm run chat-server   # Run WebSocket relay on port 8787
@@ -29,7 +29,7 @@ npm run dev:all       # Run both concurrently
 ### Pre-PR Verification for Prototype Changes
 
 ```bash
-cd prototype/web
+cd prototype/Phone
 npm run lint          # ESLint check
 npx tsc --noEmit      # TypeScript typecheck
 npm run test          # Vitest unit & integration tests

@@ -21,4 +21,4 @@ apps/
 > Real implementations will be initialized as development on each client commences.
 >
 > For the visual, UX, interaction, and functional reference, refer to the working prototype at:
-> [`prototype/web/`](../../prototype/web/)
+> [`prototype/Phone/`](../../prototype/Phone/)

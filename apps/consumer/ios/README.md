@@ -25,6 +25,6 @@
 
 ## Reference Implementation
 
-Refer to the working web prototype at [`prototype/web/`](../../../prototype/web/) for feature workflows, state machines, and UX specifications.
+Refer to the working web prototype at [`prototype/Phone/`](../../../prototype/Phone/) for feature workflows, state machines, and UX specifications.
 
 > **Security Reminder**: Never place Supabase `service_role` keys, private gateway secrets, or API credentials into Xcode build configurations, `Info.plist`, or app bundles.

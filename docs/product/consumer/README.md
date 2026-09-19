@@ -35,6 +35,6 @@ A voice-first, AI-native super-app where users can seamlessly discover, chat, or
 
 ## 3. Product Roadmap Status
 
-- **Visual & Interaction Prototype**: Complete and runnable at [`prototype/web/`](../../../prototype/web/).
+- **Visual & Interaction Prototype**: Complete and runnable at [`prototype/Phone/`](../../../prototype/Phone/).
 - **Native Android & iOS**: Planned.
 - **Production Web**: Planned.
