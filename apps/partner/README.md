@@ -6,14 +6,27 @@ The **Partner Application** is designed for businesses, service providers, and g
 
 ---
 
-## Supported Partner Types
+## Role-Based & Domain-Adaptive Architecture
 
-The platform supports diverse partner domains with tailored workflows:
-- **Food & Dining**: Restaurants, cafes, cloud kitchens (menu editing, order prep queue, kitchen display).
-- **Retail & Grocery**: Supermarkets, specialty stores (inventory tracking, barcode lookup, dispatch).
-- **Hospitality**: Hotels, resorts, serviced apartments (room inventory, check-in schedules, rate calendars).
-- **Mobility & Logistics**: Drivers, riders, couriers (trip dispatch, route navigation, live trip completion).
-- **Professional Services**: Cleaners, technicians, consultants (appointment scheduling, task logging).
+Because the Consumer app offers multiple verticals, the Partner application is built around **Dynamic Role-Based Workflows**:
+
+1. **Rider / Driver Role** (Mobility):
+   - Interactive turn-by-turn map navigation, live trip acceptance, passenger OTP verification, and GPS broadcasting.
+2. **Restaurant / Kitchen Role** (Dining):
+   - Kitchen Display System (KDS), preparation timers, 86'ing out-of-stock items, and ESC/POS thermal ticket printing.
+3. **Grocery / Store Clerk Role** (Retail):
+   - Pick-and-pack order checklists, barcode scanner, and inventory count updates.
+4. **Hospitality Front-Desk Role** (Hotels):
+   - Room reservation calendar, check-in / check-out desk, and room inventory management.
+5. **Field Technician Role** (Services):
+   - Appointment calendar, dispatch address routing, and job completion signoff.
+
+### Staff Permission Tiers (RBAC)
+Within each business partner, access is partitioned:
+* `owner`: Full banking, payout disbursement, tax, and team control.
+* `manager`: Catalog pricing, opening hours, active orders.
+* `kitchen_staff` / `cashier`: Order fulfillment only (zero financial access).
+* `driver`: Active trip navigation only.
 
 ---
 

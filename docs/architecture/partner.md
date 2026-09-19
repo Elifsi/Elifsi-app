@@ -14,18 +14,55 @@ The Partner application enables merchants, restaurants, service providers, and g
 
 ---
 
-## 2. Distinct Partner Workflows
+## 2. Role-Based Partner Architecture
 
-The platform treats different partner domains with specialized operational models:
+Because the Consumer experience in Pocket Concierge is multi-vertical (Food, Rides, Grocery, Hotels, Services), the **Partner Application is fundamentally Role-Based and Domain-Adaptive**. 
+
+The system operates across **two distinct role dimensions**:
+
+### Dimension 1: Vertical / Business Domain Roles (What business is being operated?)
+The Partner UI dynamically reconfigures its core views based on the partner's registered vertical:
 
 ```
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│   RESTAURANT    │  │ RETAIL/GROCERY  │  │   HOSPITALITY   │  │ MOBILITY/RIDER  │
-│ Order prep time │  │ Barcode scan    │  │ Room inventory  │  │ Dispatch queue  │
-│ Kitchen display │  │ Stock counts    │  │ Booking calendar│  │ Route navigation│
-│ Station routing │  │ Pick & pack     │  │ Check-in/out    │  │ Fare settlement │
-└─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘
+┌───────────────────────────────────────────────────────────────────────────────┐
+│                      PARTNER VERTICAL ROLE MAPPING                            │
+├───────────────────┬───────────────────────────────────────────────────────────┤
+│ Consumer Feature  │ Corresponding Partner Role & Operational Interface        │
+├───────────────────┼───────────────────────────────────────────────────────────┤
+│ 🚗 Rides / Cabs   │ RIDER / DRIVER ROLE:                                      │
+│                   │ • Full-screen interactive map & turn-by-turn routing      │
+│                   │ • Live trip requests, accept/decline HUD                  │
+│                   │ • Passenger pickup & dropoff OTP verification             │
+│                   │ • Live GPS broadcasting to Supabase Realtime              │
+├───────────────────┼───────────────────────────────────────────────────────────┤
+│ 🍔 Food & Dining  │ RESTAURANT / KITCHEN ROLE:                                │
+│                   │ • Kitchen Display System (KDS) order queue & prep timers  │
+│                   │ • Accept with estimated prep time (15m, 30m) or reject    │
+│                   │ • Instant menu item 86'ing (marking out of stock)         │
+│                   │ • ESC/POS thermal receipt & Kitchen Order Ticket (KOT)    │
+├───────────────────┼───────────────────────────────────────────────────────────┤
+│ 🛒 Grocery & Mart │ GROCERY / STORE CLERK ROLE:                               │
+│                   │ • Order pick-and-pack checklist                           │
+│                   │ • Barcode scanner / SKU lookup                            │
+│                   │ • Real-time stock counts and customer substitution alerts │
+├───────────────────┼───────────────────────────────────────────────────────────┤
+│ 🏨 Hotels         │ HOSPITALITY FRONT-DESK ROLE:                              │
+│                   │ • Room reservation calendar & check-in / check-out desk   │
+│                   │ • Room availability, bed configurations, rate management  │
+├───────────────────┼───────────────────────────────────────────────────────────┤
+│ 🔧 Services       │ FIELD TECHNICIAN / SERVICE PROVIDER ROLE:                 │
+│                   │ • Daily appointment calendar & customer location dispatch │
+│                   │ • Job proof photo upload & customer signature sign-off    │
+└───────────────────┴───────────────────────────────────────────────────────────┘
 ```
+
+### Dimension 2: Staff Permission Roles (Who is using the app?)
+Within any partner entity, staff accounts are restricted via PostgreSQL Row Level Security:
+
+* **`owner`**: Complete authority. Bank account setup, payout requests, revenue reports, tax/VAT documents, and staff member management.
+* **`manager`**: Operational control. Menu/catalog pricing, operating hours, active order dispatch, and customer dispute resolution.
+* **`kitchen_staff` / `counter_cashier`**: Order fulfillment only. View incoming order tickets, mark food as "ready for pickup", and print receipts. **Strictly blocked from viewing bank accounts, gross revenues, or payout triggers.**
+* **`driver` / `rider`**: Mobility execution only. View assigned trip details, passenger phone proxy, and GPS navigation.
 
 ---
 
